@@ -1,0 +1,10 @@
+pipeline {
+  agent {
+
+    docker {
+
+    }
+
+  }
+
+}
