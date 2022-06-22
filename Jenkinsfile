@@ -7,17 +7,13 @@ pipeline {
     stages {
       stage ('git clone') {
         steps {
-          sh 'echo $PWD'
           git 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
-          sh 'ls -a'
       }
       }
       stage ('build war') {
         steps {
-          sh 'echo $PWD'
-          sh 'cd boxfuse-sample-java-war-hello/'
-          sh 'ls -a'
           sh 'mvn package'
+          sh 'ls -a'
       }
       }
       stage ('build docker') {
