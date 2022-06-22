@@ -18,13 +18,13 @@ pipeline {
       stage ('build war') {
         steps {
           sh 'mvn package'
-          sh 'echo $PWD'
+          sh 'mkdir ~/hwk/ && cp /var/lib/jenkins/workspace/assembly_pipe/target/hello-1.0.war ~/hwk/'
       }
       }
       stage ('connect to host') {
         steps {
           sh 'ssh-keyscan -H 178.154.198.133 >> ~/.ssh/known_hosts'
-          sh 'mkdir ~/hwk/ && scp -i "/root/.ssh/id_rsa" root@178.154.198.133:/dockerfiles/Dockerfile ~/hwk/'
+          sh 'scp -i "/root/.ssh/id_rsa" root@178.154.198.133:/dockerfiles/Dockerfile ~/hwk/'
           sh 'ls -a ~/hwk/'
         }
       }
