@@ -18,8 +18,7 @@ pipeline {
       }
       stage ('build docker') {
         steps {
-          git 'https://github.com/Avasekho/docker_tomcat.git'
-          sh 'ls -a'
+          sh 'scp root@178.154.198.133:/home/avasekho/tomcat-docker var/lib/jenkins/workspace/assembly_pipe/Dockerfile'
           sh 'cp ./target/hello-1.0.war ./ && docker build --tag=boxfuze-app .'
           sh 'docker tag boxfuze-app avasekho/jenkins:boxfuze-app && docker push avasekho/jenkins:boxfuze-app'
       }
