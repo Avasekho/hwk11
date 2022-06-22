@@ -12,7 +12,7 @@ pipeline {
     stages {
       stage ('Ensure Docker is running') {
         steps {
-          sh 'env'
+          sh '/usr/bin/dockerd > /dev/null'
           sh 'service docker start'
           sh 'service docker status'
         }
