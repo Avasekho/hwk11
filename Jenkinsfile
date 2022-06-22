@@ -12,7 +12,7 @@ pipeline {
     stages {
       stage ('Ensure Docker is running') {
         steps {
-          sh '/usr/bin/dockerd > /dev/null'
+          sh 'export DOCKER_HOST=tcp://178.154.198.133:2375'
           sh 'service docker start'
           sh 'service docker status'
         }
