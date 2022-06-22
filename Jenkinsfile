@@ -12,6 +12,9 @@ pipeline {
     stages {
       stage ('Ensure Docker is running') {
         steps {
+          sh 'cd /var/run/docker/libcontainerd'
+          sh 'rm -rf containerd/*'
+          sh 'rm -f docker-containerd.pid'
           sh 'service docker start'
           sh 'service docker status'
         }
