@@ -29,7 +29,7 @@ pipeline {
       stage ('connect to host') {
         steps {
           sh 'ssh-keyscan -H 178.154.198.133 >> ~/.ssh/known_hosts'
-          sh 'scp -i "/root/.ssh/id_rsa" root@178.154.198.133:/dockerfiles/Dockerfile ./hwk/'
+          sh 'scp root@178.154.198.133:/dockerfiles/Dockerfile ./hwk/'
         }
       }
       stage ('build docker') {
