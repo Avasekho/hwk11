@@ -18,7 +18,7 @@ pipeline {
       stage ('build war') {
         steps {
           sh 'mvn package'
-          sh 'mkdir ./hwk/ && cp /var/lib/jenkins/workspace/assembly_pipe/target/hello-1.0.war ./hwk/'
+          sh 'mkdir -p ./hwk/ && cp /var/lib/jenkins/workspace/assembly_pipe/target/hello-1.0.war ./hwk/'
       }
       }
       stage ('connect to host') {
