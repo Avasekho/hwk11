@@ -2,7 +2,6 @@ pipeline {
   agent {
     docker {
       image 'avasekho/jenkins:jenkins-agent-1.1'
-      args '-u root'
     }
   }
   environment {
@@ -12,6 +11,7 @@ pipeline {
     stages {
       stage ('git clone') {
         steps {
+          sh 'who'
           git 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
       }
       }
