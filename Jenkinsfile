@@ -9,12 +9,7 @@ pipeline {
     DOCKERHUB_CREDS = credentials('34d2a98c-ee5a-4a65-939e-44a8a9c18d97')
   }
     stages {
-      stage ('Ensure Docker is running') {
-        steps {
-          sh 'service docker start'
-          sh 'service docker status'
-        }
-        }
+
       stage ('git clone') {
         steps {
           git 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
