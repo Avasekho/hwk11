@@ -12,7 +12,7 @@ pipeline {
     stages {
       stage ('Ensure Docker is running') {
         steps {
-          sh 'ls -la /var/run/docker.sock'
+          sh 'env'
           sh 'service docker start'
           sh 'service docker status'
         }
