@@ -2,6 +2,7 @@ pipeline {
   agent {
     docker {
       image 'avasekho/jenkins:jenkins-agent'
+      args '-u root:sudo'
     }
   }
   environment {
@@ -17,7 +18,6 @@ pipeline {
       stage ('build war') {
         steps {
           sh 'mvn package'
-          sh 'ls -a'
       }
       }
       stage ('build docker') {
