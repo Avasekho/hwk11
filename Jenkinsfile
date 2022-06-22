@@ -3,10 +3,10 @@ pipeline {
     docker {
       image 'avasekho/jenkins:jenkins-agent'
     }
+  }
   environment {
     HOST_CREDS = credentials('55a9dfb4-d756-446f-94d5-88c726378cd8')
     DOCKERHUB_CREDS = credentials('34d2a98c-ee5a-4a65-939e-44a8a9c18d97')
-  }
   }
     stages {
       stage ('git clone') {
