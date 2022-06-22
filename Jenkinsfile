@@ -1,8 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'avasekho/jenkins:jenkins-agent'
-      args '-u root:sudo'
+      image 'avasekho/jenkins:jenkins-agent-1.1'
     }
   }
   environment {
@@ -20,9 +19,13 @@ pipeline {
           sh 'mvn package'
       }
       }
+      stage ('connect to host') {
+        sh 'ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""'
+        sh 'sshpass -p $HOST_CREDS_PWD ssh-copy-id -o StrictHostKeyChecking=no root@178.154.198.133'
+        sh 'scp -i "$HOME/.ssh/id_rsa" root@178.154.198.133:/home/avasekho/tomcat-docker var/lib/jenkins/workspace/assembly_pipe/Dockerfile'
+      }
       stage ('build docker') {
         steps {
-          sh 'scp -i /root/.ssh/id_rsa root@178.154.198.133:/home/avasekho/tomcat-docker var/lib/jenkins/workspace/assembly_pipe/Dockerfile'
           sh 'cp ./target/hello-1.0.war ./ && docker build --tag=boxfuze-app .'
           sh 'docker login -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW'
           sh 'docker tag boxfuze-app avasekho/jenkins:boxfuze-app && docker push avasekho/jenkins:boxfuze-app'
