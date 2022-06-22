@@ -2,6 +2,7 @@ pipeline {
   agent {
     docker {
       image 'avasekho/jenkins:jenkins-agent-1.3'
+      args '-u root'
     }
   }
   environment {
@@ -16,6 +17,7 @@ pipeline {
       }
       stage ('build war') {
         steps {
+          sh 'service docker start'
           sh 'service docker status'
           sh 'mvn package'
           sh 'mkdir /home/avasekho/hwk/ && cp /var/lib/jenkins/workspace/assembly_pipe/target/hello-1.0.war /home/avasekho/hwk/'
