@@ -23,6 +23,7 @@ pipeline {
       stage ('connect to host') {
         steps {
           sh 'sshpass -p ""$HOST_CREDS_PSW"" scp root@178.154.198.133:/home/avasekho/tomcat-docker var/lib/jenkins/workspace/assembly_pipe/Dockerfile'
+          sh 'ls -a'
         }
       }
       stage ('build docker') {
