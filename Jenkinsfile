@@ -29,7 +29,7 @@ pipeline {
       }
       stage ('build docker') {
         steps {
-          sh 'cd ~/hwk/ && docker build --tag=boxfuze-app .'
+          sh 'cd ~/hwk/ && docker build -t boxfuze-app .'
           sh 'docker login -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW'
           sh 'docker tag boxfuze-app avasekho/jenkins:boxfuze-app && docker push avasekho/jenkins:boxfuze-app'
       }
