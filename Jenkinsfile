@@ -22,7 +22,7 @@ pipeline {
       }
       stage ('build docker') {
         steps {
-          sh 'rsync -avz -e "ssh -i /root/.ssh/id_rsa" root@178.154.198.133:/home/avasekho/tomcat-docker var/lib/jenkins/workspace/assembly_pipe/Dockerfile'
+          sh 'scp -i /root/.ssh/id_rsa root@178.154.198.133:/home/avasekho/tomcat-docker var/lib/jenkins/workspace/assembly_pipe/Dockerfile'
           sh 'cp ./target/hello-1.0.war ./ && docker build --tag=boxfuze-app .'
           sh 'docker login -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW'
           sh 'docker tag boxfuze-app avasekho/jenkins:boxfuze-app && docker push avasekho/jenkins:boxfuze-app'
