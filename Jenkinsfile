@@ -25,8 +25,14 @@ pipeline {
         steps {
           sh 'ssh-keyscan -H 178.154.198.133 >> ~/.ssh/known_hosts'
           sh 'scp -i "/root/.ssh/id_rsa" root@178.154.198.133:/dockerfiles/Dockerfile ~/hwk/'
-          sh 'ls -a ~/hwk/'
         }
+      }
+      stage ('build docker') {
+        steps {
+          sh 'cd ~/hwk/ && docker build --tag=boxfuze-app .'
+          sh 'docker login -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW'
+          sh 'docker tag boxfuze-app avasekho/jenkins:boxfuze-app && docker push avasekho/jenkins:boxfuze-app'
+      }
       }
       }
   }
