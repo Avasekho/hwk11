@@ -17,19 +17,19 @@ pipeline {
       stage ('build war') {
         steps {
           sh 'mvn package'
-          sh 'mkdir ~/hwk/ && cp /var/lib/jenkins/workspace/assembly_pipe/target/hello-1.0.war ~/hwk/'
+          sh 'mkdir /home/avasekho/hwk/ && cp /var/lib/jenkins/workspace/assembly_pipe/target/hello-1.0.war /home/avasekho/hwk/'
       }
       }
       stage ('connect to host') {
         steps {
           sh 'ssh-keyscan -H 178.154.198.133 >> ~/.ssh/known_hosts'
-          sh 'scp -i "/root/.ssh/id_rsa" root@178.154.198.133:/dockerfiles/Dockerfile ~/hwk/'
+          sh 'scp -i "/root/.ssh/id_rsa" root@178.154.198.133:/dockerfiles/Dockerfile /home/avasekho/hwk/'
         }
       }
       stage ('build docker') {
         steps {
           sh 'service docker status'
-          sh 'cd ~/hwk/ && docker build -t boxfuze-app .'
+          sh 'cd /home/avasekho/hwk/ && docker build -t boxfuze-app .'
           sh 'docker login -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW'
           sh 'docker tag boxfuze-app avasekho/jenkins:boxfuze-app && docker push avasekho/jenkins:boxfuze-app'
       }
