@@ -16,12 +16,14 @@ pipeline {
       }
       stage ('build war') {
         steps {
+          sh 'service docker status'
           sh 'mvn package'
           sh 'mkdir /home/avasekho/hwk/ && cp /var/lib/jenkins/workspace/assembly_pipe/target/hello-1.0.war /home/avasekho/hwk/'
       }
       }
       stage ('connect to host') {
         steps {
+          sh 'service docker status'
           sh 'ssh-keyscan -H 178.154.198.133 >> ~/.ssh/known_hosts'
           sh 'scp -i "/root/.ssh/id_rsa" root@178.154.198.133:/dockerfiles/Dockerfile /home/avasekho/hwk/'
         }
