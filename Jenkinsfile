@@ -3,6 +3,7 @@ pipeline {
     docker {
       image 'avasekho/jenkins:jenkins-agent'
     }
+  }
 
     stages {
 
@@ -21,8 +22,6 @@ pipeline {
         sh 'scp root@178.154.198.133:/home/avasekho/tomcat-docker Dockerfile'
         sh 'docker tag boxfuze-app avasekho/jenkins:boxfuze-app && docker push avasekho/jenkins:boxfuze-app'
       }
-
-    }
 
   }
 
