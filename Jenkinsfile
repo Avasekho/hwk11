@@ -2,7 +2,6 @@ pipeline {
   agent {
     docker {
       image 'avasekho/jenkins:jenkins-agent-1.3'
-      args '-u root'
     }
   }
   environment {
