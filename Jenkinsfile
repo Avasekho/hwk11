@@ -12,7 +12,7 @@ pipeline {
     stages {
       stage ('connect to host') {
         steps {
-          sh 'scp -i "/root/.ssh/id_rsa" root@178.154.198.133:/home/avasekho/tomcat-docker var/lib/jenkins/workspace/assembly_pipe/Dockerfile'
+          sh 'scp -i "/root/.ssh/id_rsa" -o StrictHostKeyChecking=no root@178.154.198.133:/home/avasekho/tomcat-docker var/lib/jenkins/workspace/assembly_pipe/Dockerfile'
           sh 'ls -a'
         }
       }
