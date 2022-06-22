@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'avasekho/jenkins:jenkins-agent-1.2'
+      image 'avasekho/jenkins:jenkins-agent-1.4'
       args '-u root'
     }
   }
@@ -35,7 +35,6 @@ pipeline {
       }
       stage ('build docker') {
         steps {
-          sh 'service docker status'
           sh 'cd ~/hwk/ && docker build -t boxfuze-app .'
           sh 'docker login -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW'
           sh 'docker tag boxfuze-app avasekho/jenkins:boxfuze-app && docker push avasekho/jenkins:boxfuze-app'
