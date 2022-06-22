@@ -14,7 +14,6 @@ pipeline {
         steps {
           sh 'service docker start'
           sh 'service docker status'
-          sh 'docker run hello-world'
         }
         }
       stage ('git clone') {
