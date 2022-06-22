@@ -21,9 +21,7 @@ pipeline {
       }
       stage ('connect to host') {
         steps {
-          sh 'ssh-keygen -t rsa -q -f "$HOME/.ssh/id_rsa" -N ""'
-          sh 'sshpass -p $HOST_CREDS_PWD ssh-copy-id -o StrictHostKeyChecking=no root@178.154.198.133'
-          sh 'scp -i "$HOME/.ssh/id_rsa" root@178.154.198.133:/home/avasekho/tomcat-docker var/lib/jenkins/workspace/assembly_pipe/Dockerfile'
+          sh 'sshpass -p $HOST_CREDS_PWD scp root@178.154.198.133:/home/avasekho/tomcat-docker var/lib/jenkins/workspace/assembly_pipe/Dockerfile'
         }
       }
       stage ('build docker') {
