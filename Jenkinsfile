@@ -18,12 +18,13 @@ pipeline {
       stage ('build war') {
         steps {
           sh 'mvn package'
+          sh 'echo $PWD'
       }
       }
       stage ('connect to host') {
         steps {
           sh 'ssh-keyscan -H 178.154.198.133 >> ~/.ssh/known_hosts'
-          sh 'scp -i "/root/.ssh/id_rsa" root@178.154.198.133:/home/avasekho/tomcat-docker ~/hwk/Dockerfile'
+          sh 'mkdir ~/hwk/ && scp -i "/root/.ssh/id_rsa" root@178.154.198.133:/dockerfiles/Dockerfile ~/hwk/'
           sh 'la -a ~/hwk/'
         }
       }
