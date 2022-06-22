@@ -14,8 +14,8 @@ pipeline {
         steps {
           sh 'ssh-keyscan -H 178.154.198.133 >> ~/.ssh/known_hosts'
           sh 'echo $PWD'
-          sh 'scp -i "/root/.ssh/id_rsa" root@178.154.198.133:/home/avasekho/tomcat-docker var/lib/jenkins/workspace/assembly_pipe/'
-          sh 'ls -a'
+          sh 'scp -i "/root/.ssh/id_rsa" root@178.154.198.133:/home/avasekho/tomcat-docker ~/'
+          sh 'ls -a ~/'
         }
       }
       }
