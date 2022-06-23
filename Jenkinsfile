@@ -42,11 +42,11 @@ pipeline {
       stage('Run docker on slave host') {
       steps {
         sh 'ssh-keyscan -H 178.154.197.91 >> ~/.ssh/known_hosts'
-        sh '''ssh root@178.154.197.91 << EOF
+        sh 'ssh root@178.154.197.91 << EOF
         docker pull avasekho/jenkins:boxfuze-app 
         cd /home/avasekho/docker 
         docker-compose up -d
-        EOF'''
+        EOF'
       }
     }
    
