@@ -28,8 +28,8 @@ pipeline {
       }
       stage ('connect to host') {
         steps {
-          sh 'ssh-keyscan -H 178.154.198.133 >> ~/.ssh/known_hosts'
-          sh 'scp root@178.154.198.133:/dockerfiles/Dockerfile ~/hwk/'
+          sh 'ssh-keyscan -H 178.154.196.234 >> ~/.ssh/known_hosts'
+          sh 'scp root@178.154.196.234:/dockerfiles/Dockerfile ~/hwk/'
         }
       }
       stage ('build docker') {
@@ -41,8 +41,8 @@ pipeline {
       }
       stage('Run docker on slave host') {
       steps {
-        sh 'ssh-keyscan -H 178.154.197.214 >> ~/.ssh/known_hosts'
-        sh 'ssh root@178.154.197.214 docker pull avasekho/jenkins:boxfuze-app && docker run -d -p 8080:8123 avasekho/jenkins:boxfuze-app'
+        sh 'ssh-keyscan -H 178.154.197.91 >> ~/.ssh/known_hosts'
+        sh 'ssh root@178.154.197.91 docker pull avasekho/jenkins:boxfuze-app && docker run -d -p 8080:8080 avasekho/jenkins:boxfuze-app'
       }
     }
    
