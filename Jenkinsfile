@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'avasekho/jenkins:jenkins-agent-1.4'
+      image 'avasekho/jenkins:jenkins-agent-1.0'
       args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
     }
   }
