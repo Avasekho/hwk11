@@ -44,8 +44,7 @@ pipeline {
         sh 'ssh-keyscan -H 178.154.197.91 >> ~/.ssh/known_hosts'
         sh '''ssh root@178.154.197.91 << EOF
         docker pull avasekho/jenkins:boxfuze-app 
-        cd /home/avasekho/docker 
-        docker-compose up -d
+        docker run -d -p 8080:8080 avasekho/jenkins:boxfuze-app
 EOF'''
       }
     }
