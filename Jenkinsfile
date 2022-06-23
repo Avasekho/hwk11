@@ -42,7 +42,7 @@ pipeline {
       stage('Run docker on slave host') {
       steps {
         sh 'ssh-keyscan -H 178.154.197.214 >> ~/.ssh/known_hosts'
-        sh 'ssh root@178.154.197.214 docker pull avasekho/jenkins:boxfuze-app && docker run -d -p 8080:8081 avasekho/jenkins:boxfuze-app'
+        sh 'ssh root@178.154.197.214 docker pull avasekho/jenkins:boxfuze-app && docker run -d -p 8080:8123 avasekho/jenkins:boxfuze-app'
       }
     }
    
