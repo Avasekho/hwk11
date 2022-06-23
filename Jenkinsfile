@@ -46,7 +46,7 @@ pipeline {
         docker pull avasekho/jenkins:boxfuze-app 
         cd /home/avasekho/docker 
         docker-compose up -d
-        EOF'''
+EOF'''
       }
     }
    
