@@ -6,13 +6,11 @@ pipeline {
     }
   }
   environment {
-    HOST_CREDS = credentials('55a9dfb4-d756-446f-94d5-88c726378cd8')
     DOCKERHUB_CREDS = credentials('34d2a98c-ee5a-4a65-939e-44a8a9c18d97')
   }
     stages {
       stage ('Ensure Docker is running') {
         steps {
-          sh 'export DOCKER_HOST=tcp://178.154.198.133:2375'
           sh 'service docker start'
           sh 'service docker status'
         }
@@ -44,7 +42,7 @@ pipeline {
       stage('Run docker on slave host') {
       steps {
         sh 'ssh-keyscan -H 178.154.197.214 >> ~/.ssh/known_hosts'
-        sh 'ssh root@178.154.197.214 docker pull avasekho/jenkins:boxfuze-app && docker run -d -p 8080:8080 avasekho/jenkins:boxfuze-app'
+        sh 'ssh root@178.154.197.214 docker pull avasekho/jenkins:boxfuze-app && docker run -d -p 8080:8081 avasekho/jenkins:boxfuze-app'
       }
     }
    
